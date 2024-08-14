@@ -1,16 +1,37 @@
 import React, { useEffect, useState } from "react";
 
-function Edit({ listToEdit, lists }) {
-  console.log("lists: ", lists);
+function Edit({ listToEdit, lists, setLists, setEditIndex }) {
+  const [edited, setEdited] = useState<string>("");
+  console.log(edited);
   const [todoToEdit, setTodoToEdit] = useState<string>("");
-  console.log("listToEdit: ", listToEdit);
 
   useEffect(() => {
     const toEdit = lists[listToEdit];
     setTodoToEdit(toEdit);
   }, []);
-
-  return <div>{todoToEdit}</div>;
+  console.log("listToEdit: ", todoToEdit);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      const todos: string[] = JSON.parse(localStorage.getItem("todos") || "[]");
+      todos[listToEdit] = todoToEdit;
+      localStorage.setItem("todos", JSON.stringify(todos));
+      setLists(todos);
+      setEditIndex(null);
+    }
+  };
+  return (
+    <div className="edit-pop-up">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="edit-input"
+          type="text"
+          value={todoToEdit}
+          onChange={(e) => setTodoToEdit(e.target.value)}
+        />
+      </form>
+    </div>
+  );
 }
 
 export default Edit;
