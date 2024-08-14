@@ -6,19 +6,22 @@ function Todos({ lists, setLists }) {
   const [fetching, setFetching] = useState<boolean>(true);
   const [list, setList] = useState<number>();
 
-  const [modal, setModal] = useState<boolean>(false);
+  const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
-  console.log("modal: ", modal);
 
   const handleDeleteClick = (index: number) => {
     setList(index);
-    setModal(true);
+    setDeleteIndex(index);
   };
 
   const handleEditClick = (index: number) => {
     setEditIndex(index);
     setList(index);
   };
+
+  if (lists.length === 0) {
+    return <div className="nothing">No to-do list yet.</div>;
+  }
   return (
     <>
       {lists.map((list, index) => (
@@ -38,8 +41,12 @@ function Todos({ lists, setLists }) {
             <button type="button" onClick={() => handleDeleteClick(index)}>
               Delete
             </button>
-            {modal && (
-              <Confirmation setModal={setModal} listToDelete={list} setLists={setLists} />
+            {deleteIndex === index && (
+              <Confirmation
+                setModal={setDeleteIndex}
+                listToDelete={list}
+                setLists={setLists}
+              />
             )}
           </div>
         </div>
