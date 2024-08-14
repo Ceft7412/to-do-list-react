@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-function Form({ setLists }) {
+type FormProps = {
+  setLists: (lists: string[]) => void;
+};
+function Form({ setLists }: FormProps) {
   const [input, setInput] = useState<string>("");
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
