@@ -7,7 +7,7 @@ function Todos({ lists, setLists }) {
   const [list, setList] = useState<number>();
 
   const [modal, setModal] = useState<boolean>(false);
-  const [editModal, setEditModal] = useState<boolean>(false);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
   console.log("modal: ", modal);
 
   const handleDeleteClick = (index: number) => {
@@ -16,14 +16,21 @@ function Todos({ lists, setLists }) {
   };
 
   const handleEditClick = (index: number) => {
-    setEditModal(true);
+    setEditIndex(index);
     setList(index);
   };
   return (
     <>
       {lists.map((list, index) => (
         <div key={index} className="todo-list">
-          {editModal && <Edit listToEdit={list} lists={lists} />}
+          {editIndex === index && (
+            <Edit
+              listToEdit={index}
+              lists={lists}
+              setLists={setLists}
+              setEditIndex={setEditIndex}
+            />
+          )}
           <span className="todo-list__title">{list}</span>
           <div className="todo-list__actions">
             <button onClick={() => handleEditClick(index)}>Edit</button>
