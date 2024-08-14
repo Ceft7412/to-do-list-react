@@ -2,13 +2,12 @@ import React, { useState } from "react";
 
 function Form() {
   const [input, setInput] = useState<string>("");
-  console.log("input: ", input);
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // To avoid error, checking if it's undefined is a must.
     if (typeof window !== "undefined") {
-      const todos = JSON.parse(localStorage.getItem("todos") || "[]");
+      const todos: string[] = JSON.parse(localStorage.getItem("todos") || "[]");
       localStorage.setItem("todos", JSON.stringify([...todos, input]));
       setInput("");
     }
