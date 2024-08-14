@@ -1,9 +1,11 @@
-import Input from "./components/Input";
+import Form from "./components/Form";
 function App() {
   return (
     <>
       <main className="container">
-        <Input />
+        <div className="item1">
+          <Form />
+        </div>
       </main>
     </>
   );
