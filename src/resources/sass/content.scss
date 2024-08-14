@@ -1,6 +1,8 @@
 .container {
   max-width: 1300px;
   margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
   border-right: 2px solid #5e565a;
   border-left: 2px solid #5e565a;
   background-color: #efecca;
@@ -28,6 +30,11 @@
         font-weight: 600;
         margin-bottom: 20px;
         color: #ff934f;
+      }
+      .nothing {
+        font-size: 22px;
+        font-weight: 600;
+        color: black;
       }
       .todo-list {
         display: flex;
