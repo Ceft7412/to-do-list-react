@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-function Edit({ listToEdit, lists, setLists, setEditIndex }) {
+interface Props {
+  listToEdit: number;
+  lists: string[];
+  setLists: (lists: string[]) => void;
+  setEditIndex: (index: number | null) => void;
+}
+
+function Edit({ listToEdit, lists, setLists, setEditIndex }: Props) {
   const [edited, setEdited] = useState<string>("");
   console.log(edited);
   const [todoToEdit, setTodoToEdit] = useState<string>("");

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import Confirmation from "./Modal/Confirmation";
 import Edit from "./Modal/Edit";
 
-function Todos({ lists, setLists }) {
+interface Props {
+  lists: string[];
+  setLists: (lists: string[]) => void;
+}
+function Todos({ lists, setLists }: Props) {
   const [fetching, setFetching] = useState<boolean>(true);
   const [list, setList] = useState<number>();
 

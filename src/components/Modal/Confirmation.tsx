@@ -1,6 +1,9 @@
-import React from "react";
-
-function Confirmation({ setModal, listToDelete, setLists }) {
+interface Props {
+  setModal: (modal: number | null) => void;
+  listToDelete: string;
+  setLists: (lists: string[]) => void;
+}
+function Confirmation({ setModal, listToDelete, setLists }: Props) {
   console.log("listToDelete: ", listToDelete);
   const handleDelete = () => {
     if (typeof window !== "undefined") {
